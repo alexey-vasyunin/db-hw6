@@ -52,10 +52,14 @@ c:\Temp\mysql\bin>mysqld --defaults-file=C:\Temp\mysql\etc\my2.ini --initialize 
 - Запускаем два окна cmd, в каждом будет запущен свой сервер. В каждом делаем cd c:\temp\mysql\bin
 - Запускаем первый сервер в одном окне
 
+```
 mysqld --defaults-file=C:\Temp\mysql\etc\my1.ini --standalone --console
+```
 
 - Запускаем второй сервер во втором окне
+```
 mysqld --defaults-file=C:\Temp\mysql\etc\my2.ini --standalone --console
+```
 
 Они должны работать, то есть после запуска не вываливаться в шелл.
 
@@ -85,7 +89,15 @@ netstat -nap tcp | findstr /R ":33.0"
 Запоминаем что за лог он вывел и positon
 
 Выходим (\q), делаем дамп базы: ```mysqldump.exe -u root -P 3310 -p employees > repl.sql```
-Закидываем дамп на слейв: ```mysql -u root -P 3320 -p employees < repl.sql```
+
+На слейве создаем базу employees:
+```SQL
+create database employees
+```
+
+Закидываем дамп на слейв: 
+```
+mysql -u root -P 3320 -p employees < repl.sql```
 Заходим вновь на мастер, разлочиваем базу: ```UNLOCK TABLES;```
 
 Выходим. Заходим на слейв (порт 3320).
