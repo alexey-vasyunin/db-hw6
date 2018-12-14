@@ -97,7 +97,8 @@ create database employees
 
 Закидываем дамп на слейв: 
 ```
-mysql -u root -P 3320 -p employees < repl.sql```
+mysql -u root -P 3320 -p employees < repl.sql
+```
 Заходим вновь на мастер, разлочиваем базу: ```UNLOCK TABLES;```
 
 Выходим. Заходим на слейв (порт 3320).
