@@ -99,16 +99,15 @@ create database employees
 ```
 mysql -u root -P 3320 -p employees < repl.sql
 ```
-Заходим вновь на мастер, разлочиваем базу: ```UNLOCK TABLES;```
-
-Выходим. Заходим на слейв (порт 3320).
-Создаём пользователя slave_user:
+Заходим вновь на мастер, разлочиваем базу и создаем пользователя slave_user: 
 ```SQL
+unlock tables;
 create user 'slave_user';
 alter user 'slave_user' identified by 'password';
-grant replication SLAVE on *.* to 'slave_user'@'%' ;
+grant replication SLAVE on *.* to 'slave_user'@'%';
 ```
 
+Выходим. Заходим на слейв (порт 3320).
 Вводим шаманскую строку:
 ```SQL
 CHANGE MASTER TO GET_MASTER_PUBLIC_KEY=1;
